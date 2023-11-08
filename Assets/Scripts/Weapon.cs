@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     public float cooldown;
     public float cooldownRemaining;
     private float rotDur;
+    private float defScale;
     [Tooltip("The weapon type index, 0-Magical, 1-Stealth, 2-Battle")]
     public int weaponType;
 
@@ -27,6 +28,8 @@ public class Weapon : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D col;
     private PlayerController player;
+    [Tooltip("The gameobject that parents the sprite")]
+    public GameObject spriteHolder;
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class Weapon : MonoBehaviour
         trueSpeed = weaponSpeed + Mathf.Abs(rotComplete);
         rotDur = Mathf.Abs(rotComplete) / Mathf.Abs(trueSpeed);
         cooldown = rotDur + cooldown;
+        defScale = spriteHolder.transform.localScale.y;
     }
 
     // Start is called before the first frame update
@@ -69,8 +73,11 @@ public class Weapon : MonoBehaviour
         int dir = 1;
         if (dirBased)
         {
-            dir = player.dir;
-            sr.transform.localScale = new Vector3(dir, transform.localScale.y,transform.localScale.z);
+            if(player.dir != 0)
+            {
+                dir = player.dir;
+            }
+            spriteHolder.transform.localScale = new Vector3(defScale * dir, spriteHolder.transform.localScale.y, spriteHolder.transform.localScale.z);
         }
         else
         {
