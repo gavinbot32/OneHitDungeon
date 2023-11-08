@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public float walkDur;
     public Vector2 walkClamp;
     public float moveSpeed;
+    public int dir;
+
 
     [Header("Components")]
     private Rigidbody2D rig;
@@ -71,7 +73,6 @@ public class PlayerController : MonoBehaviour
         if (xInput != 0)
         {
             walkCooldown = walkDur;
-            int dir;
             if (xInput < 0)
             {
                 dir = -1;

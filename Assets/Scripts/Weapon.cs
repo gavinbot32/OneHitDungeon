@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour
     public string weaponDesc;
     public float weaponSpeed;
     public float weaponDamage;
+
+    [Tooltip("Determines if it rotates based upon direction of player")]
+    public bool dirBased;
+
     public int rotComplete;
     private float trueSpeed;
     public float cooldown;
@@ -22,12 +26,14 @@ public class Weapon : MonoBehaviour
     private Rigidbody2D rig;
     private SpriteRenderer sr;
     private Collider2D col;
+    private PlayerController player;
 
     private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        player = FindObjectOfType<PlayerController>();
         sr.enabled = false;
         col.enabled = false;
         trueSpeed = weaponSpeed + Mathf.Abs(rotComplete);
@@ -57,12 +63,21 @@ public class Weapon : MonoBehaviour
 
     IEnumerator weaponAttack()
     {
-        int dir = 1;
+        
         sr.enabled = true;
         col.enabled = true;
-        if(rotComplete < 0)
+        int dir = 1;
+        if (dirBased)
         {
-            dir = -1;
+            dir = player.dir;
+            sr.transform.localScale = new Vector3(dir, transform.localScale.y,transform.localScale.z);
+        }
+        else
+        {
+            if (rotComplete < 0)
+            {
+                dir = -1;
+            }
         }
         rig.angularVelocity = trueSpeed * dir;
         yield return new WaitForSeconds(rotDur);
