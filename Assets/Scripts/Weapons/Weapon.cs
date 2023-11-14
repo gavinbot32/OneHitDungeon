@@ -11,9 +11,6 @@ public class Weapon : MonoBehaviour
     public float weaponSpeed;
     public float weaponDamage;
 
-    [Tooltip("Determines if it rotates based upon direction of player")]
-    public bool dirBased;
-
     public int rotComplete;
     private float trueSpeed;
     public float cooldown;
@@ -24,10 +21,10 @@ public class Weapon : MonoBehaviour
     public int weaponType;
 
     [Header("Components")]
-    private Rigidbody2D rig;
-    private SpriteRenderer sr;
-    private Collider2D col;
-    private PlayerController player;
+    protected private Rigidbody2D rig;
+    protected private SpriteRenderer sr;
+    protected private Collider2D col;
+    protected private PlayerController player;
     [Tooltip("The gameobject that parents the sprite")]
     public GameObject spriteHolder;
 
@@ -52,14 +49,14 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (cooldownRemaining >= 0)
         {
             cooldownRemaining -= Time.deltaTime;
         }
     }
-    public void onAttack()
+    public virtual void onAttack()
     {
         StartCoroutine(weaponAttack());
         cooldownRemaining = cooldown;
@@ -71,20 +68,9 @@ public class Weapon : MonoBehaviour
         sr.enabled = true;
         col.enabled = true;
         int dir = 1;
-        if (dirBased)
+        if (rotComplete < 0)
         {
-            if(player.dir != 0)
-            {
-                dir = player.dir;
-            }
-            spriteHolder.transform.localScale = new Vector3(defScale * dir, spriteHolder.transform.localScale.y, spriteHolder.transform.localScale.z);
-        }
-        else
-        {
-            if (rotComplete < 0)
-            {
-                dir = -1;
-            }
+            dir = -1;
         }
         rig.angularVelocity = trueSpeed * dir;
         yield return new WaitForSeconds(rotDur);
