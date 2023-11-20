@@ -20,6 +20,8 @@ public class MagicWeapon : Weapon
         sr.enabled = false;
         col.enabled = false;
         cooldown = cooldown + waitTime;
+        trueSpeed = weaponSpeed + Mathf.Abs(rotComplete);
+        rotDur = Mathf.Abs(rotComplete) / Mathf.Abs(trueSpeed);
     }
 
 
@@ -45,10 +47,21 @@ public class MagicWeapon : Weapon
 
     IEnumerator weaponAttack()
     {
+        transform.localScale = new Vector3(player.dir, transform.localScale.y, transform.localScale.z);
         sr.enabled = true;
         GameObject curSpell = spells[Random.Range(0, spells.Length)];
         Instantiate(curSpell);
-        yield return new WaitForSeconds(waitTime);
+
+        int dir = -player.dir;
+        if (inverseRotation)
+        {
+            dir = player.dir;
+        }
+        rig.angularVelocity = trueSpeed * dir;
+        
+        yield return new WaitForSeconds(rotDur);
+        rig.angularVelocity = 0;
+        transform.rotation = Quaternion.identity;
         sr.enabled = false;
 
     }

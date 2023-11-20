@@ -12,11 +12,15 @@ public class Weapon : MonoBehaviour
     public float weaponDamage;
 
     public int rotComplete;
-    private float trueSpeed;
+    protected private float trueSpeed;
     public float cooldown;
     public float cooldownRemaining;
-    private float rotDur;
+    protected private float rotDur;
     private float defScale;
+
+    [Tooltip("Turn this on if you want the weapon to rotate in the opposite direction")]
+    public bool inverseRotation;
+
     [Tooltip("The weapon type index, 0-Magical, 1-Stealth, 2-Battle")]
     public int weaponType;
 
@@ -64,13 +68,13 @@ public class Weapon : MonoBehaviour
 
     IEnumerator weaponAttack()
     {
-        
+        transform.localScale = new Vector3(player.dir, transform.localScale.y, transform.localScale.z);
         sr.enabled = true;
         col.enabled = true;
-        int dir = 1;
-        if (rotComplete < 0)
+        int dir = -player.dir;
+        if (inverseRotation)
         {
-            dir = -1;
+            dir = player.dir;
         }
         rig.angularVelocity = trueSpeed * dir;
         yield return new WaitForSeconds(rotDur);

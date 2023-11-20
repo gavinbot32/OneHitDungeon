@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Weapon equippedWeapon;
     //public Armor armor;
     public int armorClass;
-    
+    public List<GameObject> inventory;
 
 
 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dir = 1;
     }
  
     // Update is called once per frame
@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
         {
             equippedWeapon.transform.position = transform.position;
         }
+    }
+
+    public void equipWeapon(Weapon weapon)
+    {
+        equippedWeapon = weapon;
+        equippedWeapon.gameObject.SetActive(true);
     }
 
     void inputManagement()
