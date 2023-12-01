@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     //public Armor armor;
     public int armorClass;
     public List<GameObject> inventory;
-
+    public PlayerClass playerClass;
 
 
     [Header("Movement")]

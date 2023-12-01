@@ -9,10 +9,13 @@ public class SelectCell : MonoBehaviour
     public TextMeshProUGUI label;
     public Image portrait;
 
+    public PlayerClass playerClass;
     public WeaponData weaponData;
     public GameManager gameManager;
     public GameObject prefab;
     public PlayerController player;
+    public bool classSelecting;
+
 
     private void Awake()
     {
@@ -29,16 +32,42 @@ public class SelectCell : MonoBehaviour
 
     }
 
+    public void updateUI(bool classSelecting)
+    {
+        portrait.sprite = weaponData.sprite;
+        label.text = playerClass.className;
+        prefab = weaponData.prefab;
+
+    }
+
     public void itemSelected()
     {
-        if(prefab != null)
+        if (classSelecting)
         {
-            GameObject weapon = Instantiate(prefab, player.transform.position, Quaternion.identity, player.transform);
-            player.inventory.Add(weapon);
-            weapon.SetActive(false);
-            if(player.equippedWeapon == null)
+            player.playerClass = playerClass;
+            if (prefab != null)
             {
-                player.equipWeapon(weapon.GetComponent<Weapon>());
+                GameObject weapon = Instantiate(prefab, player.transform.position, Quaternion.identity, player.transform);
+                player.inventory.Add(weapon);
+                weapon.SetActive(false);
+                if (player.equippedWeapon == null)
+                {
+                    player.equipWeapon(weapon.GetComponent<Weapon>());
+                }
+            }
+            classSelecting = false;
+        }
+        else
+        {
+            if (prefab != null)
+            {
+                GameObject weapon = Instantiate(prefab, player.transform.position, Quaternion.identity, player.transform);
+                player.inventory.Add(weapon);
+                weapon.SetActive(false);
+                if (player.equippedWeapon == null)
+                {
+                    player.equipWeapon(weapon.GetComponent<Weapon>());
+                }
             }
         }
     }

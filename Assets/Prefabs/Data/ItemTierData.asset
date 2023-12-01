@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237e5b6e1f352164f939e8e40b95addd, type: 3}
   m_Name: ItemTierData
   m_EditorClassIdentifier: 
+  playerClasses:
+  - {fileID: 11400000, guid: d353a3abd6b796a44b02b4bff7865d9c, type: 2}
+  - {fileID: 11400000, guid: 1e842b0b0ef2a2f4d9f7007df8006d5a, type: 2}
+  - {fileID: 11400000, guid: a0c91fde349d69a4fb372e7312107498, type: 2}
   tier0:
   - {fileID: 11400000, guid: fd144bf79922db248bdd9ed1dbd2be29, type: 2}
   - {fileID: 11400000, guid: f797e53f5a44ac94cb280499583d8c9d, type: 2}
