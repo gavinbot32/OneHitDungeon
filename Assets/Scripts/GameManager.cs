@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject selectScreen;
     public SelectCell[] selectCells;
     public TextMeshProUGUI selectTitle;
-
+    public GameObject invContainer;
+    public GameObject itemCellPrefab;
+    public GameObject inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,32 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
+    public void completeRoom()
+    {
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+        foreach (GameObject door in doors)
+        {
+            Destroy(door);
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void newSelections(int tier)
     {

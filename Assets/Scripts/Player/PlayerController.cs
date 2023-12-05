@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,13 +25,16 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rig;
     public Transform playerSprite;
+    private GameManager manager;
 
-
+    [Header("Keybinds")]
+    public KeyCode invKeybind;
   
 
     private void Awake()
     {
        rig = GetComponent<Rigidbody2D>();
+        manager = FindObjectOfType<GameManager>();
     }
 
     // Start is called before the first frame update
@@ -59,9 +61,50 @@ public class PlayerController : MonoBehaviour
     {
         equippedWeapon = weapon;
         equippedWeapon.gameObject.SetActive(true);
+
     }
 
+    public void addToInv(WeaponData itemData, GameObject item)
+    {
+        inventory.Add(item);
+        InventoryCell cell = Instantiate(manager.itemCellPrefab, manager.invContainer.transform).GetComponent<InventoryCell>();
+        cell.initialize(itemData, item);
+
+        item.SetActive(false);
+        if (equippedWeapon == null)
+        {
+            equipWeapon(item.GetComponent<Weapon>());
+        }
+
+
+    }
+    
     void inputManagement()
+    {
+
+        movementInput();
+
+
+        if (Input.GetKeyDown(invKeybind)){
+            manager.inventory.SetActive(!manager.inventory.active);
+        }
+
+        if (Input.GetAxisRaw("Fire1") != 0)
+        {
+            if(equippedWeapon != null)
+            {
+                if (equippedWeapon.cooldownRemaining <= 0)
+                {
+                    equippedWeapon.onAttack();
+                }
+                
+            }
+        }
+
+
+    }
+
+    public void movementInput()
     {
         float xInput = 0;
         float yInput = 0;
@@ -98,20 +141,15 @@ public class PlayerController : MonoBehaviour
             }
             rig.MovePosition(new Vector2(transform.position.x, transform.position.y + (0.5f * dir)));
         }
-
-
-        if (Input.GetAxisRaw("Fire1") != 0)
-        {
-            if(equippedWeapon != null)
-            {
-                if (equippedWeapon.cooldownRemaining <= 0)
-                {
-                    equippedWeapon.onAttack();
-                }
-                
-            }
-        }
-
-
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Floor"))
+        {
+            print("New Room");
+        }
+    }
+
 }

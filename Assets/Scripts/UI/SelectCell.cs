@@ -48,12 +48,8 @@ public class SelectCell : MonoBehaviour
             if (prefab != null)
             {
                 GameObject weapon = Instantiate(prefab, player.transform.position, Quaternion.identity, player.transform);
-                player.inventory.Add(weapon);
-                weapon.SetActive(false);
-                if (player.equippedWeapon == null)
-                {
-                    player.equipWeapon(weapon.GetComponent<Weapon>());
-                }
+                player.addToInv(weaponData, weapon);
+                
             }
             classSelecting = false;
         }
@@ -62,14 +58,10 @@ public class SelectCell : MonoBehaviour
             if (prefab != null)
             {
                 GameObject weapon = Instantiate(prefab, player.transform.position, Quaternion.identity, player.transform);
-                player.inventory.Add(weapon);
-                weapon.SetActive(false);
-                if (player.equippedWeapon == null)
-                {
-                    player.equipWeapon(weapon.GetComponent<Weapon>());
-                }
+                player.addToInv(weaponData, weapon);
             }
         }
+
     }
 
 }
