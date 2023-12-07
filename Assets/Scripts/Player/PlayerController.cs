@@ -148,7 +148,14 @@ public class PlayerController : MonoBehaviour
 
         if (collision.CompareTag("Floor"))
         {
-            print("New Room");
+            print("left floor");
+            try{
+                manager.levelProgress();
+                manager.newRoom();
+            }catch(Exception e)
+            {
+                return;
+            }
         }
     }
 

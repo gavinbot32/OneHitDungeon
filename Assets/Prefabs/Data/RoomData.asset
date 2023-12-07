@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001dbae0fe92d2848b8e98cc15d8552f, type: 3}
+  m_Name: RoomData
+  m_EditorClassIdentifier: 
+  rooms_oneDoor:
+  - {fileID: 3494347594641547963, guid: 72a9d8f063ea22b489ffcc291238cd25, type: 3}
+  rooms_twoDoor:
+  - {fileID: 4293312339868330853, guid: f6470b7b38e40354ebf31f4d5afa02d6, type: 3}
+  rooms_threeDoor: []
+  rooms_fourDoor: []
