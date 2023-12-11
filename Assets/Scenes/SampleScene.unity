@@ -851,7 +851,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 427199103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610131001}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: setScreen
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1574368028}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &427199103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2123,7 +2135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: An old ragedy wand made from oak
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eae39c685fe9e4742ba53e0747505145, type: 2}
   m_sharedMaterial: {fileID: -400130718880708518, guid: eae39c685fe9e4742ba53e0747505145, type: 2}
@@ -2150,7 +2162,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.15
+  m_fontSize: 37.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2394,6 +2406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610130999}
   - component: {fileID: 1610131000}
+  - component: {fileID: 1610131001}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2441,6 +2454,25 @@ MonoBehaviour:
   curRoom: {fileID: 0}
   roomData: {fileID: 11400000, guid: c7d38cbf8072d5142a008ff7d2038740, type: 2}
   gameLevel: 0
+--- !u!114 &1610131001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610130998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f19a49ac6202d43a5ed7fb8bf5f8be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTips: {fileID: 1980920145}
+  itemName: {fileID: 1980651855}
+  itemClass: {fileID: 406197886}
+  itemType: {fileID: 603754066}
+  itemDesc: {fileID: 1477116649}
+  itemDMG: {fileID: 1446710727}
+  itemSpeed: {fileID: 234150485}
 --- !u!114 &1614272539 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7295304603279645009, guid: c4f23a68d91ff13408f6aac6dd46531b, type: 3}
@@ -2670,7 +2702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: Ragedy Wand
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eae39c685fe9e4742ba53e0747505145, type: 2}
   m_sharedMaterial: {fileID: -400130718880708518, guid: eae39c685fe9e4742ba53e0747505145, type: 2}
@@ -2697,10 +2729,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 31.05
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2733,7 +2765,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 5.4040527, y: 0, z: 6.3864746, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

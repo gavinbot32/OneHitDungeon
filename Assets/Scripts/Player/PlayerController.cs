@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
     public Transform playerSprite;
     private GameManager manager;
+    public UIManager uiManager;
 
     [Header("Keybinds")]
     public KeyCode invKeybind;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
        rig = GetComponent<Rigidbody2D>();
         manager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     // Start is called before the first frame update
@@ -86,8 +88,8 @@ public class PlayerController : MonoBehaviour
 
 
         if (Input.GetKeyDown(invKeybind)){
-            manager.inventory.SetActive(!manager.inventory.active);
-        }
+            uiManager.setScreen(manager.inventory);
+                }
 
         if (Input.GetAxisRaw("Fire1") != 0)
         {

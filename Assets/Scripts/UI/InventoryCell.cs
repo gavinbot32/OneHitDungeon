@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class InventoryCell : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class InventoryCell : MonoBehaviour
 
     public WeaponData weaponData;
     public GameManager gameManager;
+    public UIManager uiManager;
     public PlayerController player;
     public GameObject item;
     public Outline outline;
@@ -21,6 +23,7 @@ public class InventoryCell : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
         inited = false;
     }
      
@@ -37,6 +40,12 @@ public class InventoryCell : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            uiManager.setCursor(weaponData);
+        }
+
         if (inited && item == null)
         {
             Destroy(gameObject);
