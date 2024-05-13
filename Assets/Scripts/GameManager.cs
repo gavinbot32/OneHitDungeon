@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
             gameLevel++;
         }
     }
-    private void newSelections(int tier)
+    public void newSelections(int tier)
     {
         if(tier == 0)
         {

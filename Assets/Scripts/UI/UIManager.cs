@@ -26,9 +26,12 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI itemDMG;
     public TextMeshProUGUI itemSpeed;
 
+    [Header("Other UI")]
+    public GameObject ePopUp;
     private void Awake()
     {
         manager = GetComponent<GameManager>();
+        ePopUp.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -45,10 +48,20 @@ public class UIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+       /* bool stayActive = false;
+        InventoryCell[] cells = FindObjectsOfType<InventoryCell>();
+        foreach (InventoryCell cell in cells)
+        {
+            if (cell.highlighted)
+            {
+                stayActive = true;
+                break;
+            }
+        }
+         toolTips.SetActive(stayActive);*/
     }
 
-    public void setCursor(WeaponData itemData)
+   /* public void setCursor(WeaponData itemData)
     {
         Weapon item = itemData.prefab.GetComponent<Weapon>();
         string[] classStrings = {"Mage", "Rogue", "Warrior" };
@@ -59,12 +72,19 @@ public class UIManager : MonoBehaviour
         itemDesc.text = item.weaponDesc;
         itemDMG.text = item.weaponDamage.ToString();
         itemSpeed.text = item.weaponSpeed.ToString();
-        toolTips.transform.position = mousePos; 
-    }
+        toolTips.transform.position = mousePos;
+        toolTips.SetActive(true);
+    }*/
 
     public void setScreen(GameObject screen)
     {
         screen.SetActive(!screen.active);
+    }
+
+    public void setPopup(bool active)
+    {
+        ePopUp.SetActive(active);
+        ePopUp.GetComponent<Animator>().SetTrigger("Popup");
     }
 
 }

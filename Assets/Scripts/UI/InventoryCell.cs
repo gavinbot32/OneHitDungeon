@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class InventoryCell : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class InventoryCell : MonoBehaviour
     public Outline outline;
     public Color highlight;
     public bool inited;
+   // public bool highlighted;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class InventoryCell : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
         inited = false;
+   //     highlighted = false;
     }
      
 
@@ -41,10 +44,7 @@ public class InventoryCell : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            uiManager.setCursor(weaponData);
-        }
+  
 
         if (inited && item == null)
         {
@@ -64,4 +64,13 @@ public class InventoryCell : MonoBehaviour
     {
         player.equipWeapon(item.GetComponent<Weapon>());
     }
+/*
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        highlighted = true;
+        uiManager.setCursor(weaponData);
+    }
+    public void OnPointerExit(PointerEventData eventData) { 
+        highlighted = false;
+    }   */
 }
